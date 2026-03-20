@@ -1,0 +1,9 @@
+# Ignore generated files 
+target/
+test-output/
+.classpath
+.project
+.settings/
+.metadata/
+Thumbs.db
+desktop.ini
