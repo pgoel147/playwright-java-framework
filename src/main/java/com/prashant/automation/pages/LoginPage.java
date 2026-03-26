@@ -17,7 +17,7 @@ public class LoginPage {
 	private static final String LOGIN_Button   = "button[type='submit']";
 	private static final String SUCCESS_MSG    = ".flash.success";
 	private static final String ERRROR_MSG	   = ".flash.error";
-	
+
 	
 // -- constructor--
 	//Runs when we create login page --
@@ -55,6 +55,9 @@ public class LoginPage {
 	public String getErrorMessage() {
 		return page.locator(ERRROR_MSG).innerText();
 	}
+	
+	
+	
 	
 	// ── Combined Actions ──────────────────────────────
     // Do multiple steps in one call

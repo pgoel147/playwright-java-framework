@@ -2,6 +2,8 @@ package com.prashant.automation.tests;
 
 import com.microsoft.playwright.*;
 import com.prashant.automation.pages.LoginPage;
+import com.prashant.automation.pages.SecureAreaPage;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -13,6 +15,7 @@ public class LoginTest {
     Browser browser;
     Page page;
     LoginPage loginPage;
+    SecureAreaPage secureAreaPage;
 
     @BeforeMethod
     public void setUp() {
@@ -97,6 +100,34 @@ public class LoginTest {
 
         System.out.println("PASSED - Empty password handled!");
     }
+    
+    @Test
+    public void testLoginAndLogout() {
+        // Login first
+        loginPage.loginWith("tomsmith", "SuperSecretPassword!");
+
+        // Now we're on secure area page
+        SecureAreaPage secureArea = new SecureAreaPage(page);
+
+        // Verify we landed on secure area
+        String header = secureArea.getHeaderText();
+        Assert.assertTrue(
+            header.contains("Secure Area"),
+            "Should be on secure area page!"
+        );
+        System.out.println("On secure area: " + header);
+
+        // Now logout
+        secureArea.clickLogout();
+
+        String logoutMsg = secureArea.getFlashMessage();
+        Assert.assertTrue(
+            logoutMsg.contains("logged out"),
+            "Should show logout message!"
+            );
+
+        System.out.println("PASSED - Login and logout flow complete!");
+    }
 
     @AfterMethod
     public void tearDown() {
@@ -106,4 +137,6 @@ public class LoginTest {
         System.out.println("Browser closed!");
     }
 
+    
+    
 }
