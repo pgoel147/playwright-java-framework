@@ -51,6 +51,22 @@ page.fill("#password",..)  →    (one clean line)
 page.click("button")       →    
 ```
 
+## REST API Testing
+- REST Assured 5.3.2
+- Full CRUD operations (GET, POST, PUT, DELETE)
+- Status code assertions (200, 201, 204, 404)
+- JSON response validation
+- API key authentication
+
+| Test | Method | Endpoint | Status |
+|---|---|---|---|
+| Get single user | GET | /users/2 | PASS ✅ |
+| Get all users | GET | /users | PASS ✅ |
+| Create user | POST | /users | PASS ✅ |
+| Update user | PUT | /users/2 | PASS ✅ |
+| Delete user | DELETE | /users/2 | PASS ✅ |
+| User not found | GET | /users/999 | PASS ✅ |
+
 ## How to Run
 
 Clone the repo:
